@@ -15,7 +15,7 @@ jna-platform-5.5.0.jar (https://github.com/java-native-access/jna)
 - Windows
 
 # Download
-
+https://github.com/MrMarnic/JIconExtractReloaded/releases/download/v1.0/JIconExtractReloaded.jar
 
 # License
 You are free to use it in your project.
