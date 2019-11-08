@@ -4,7 +4,7 @@ With the help of this library you can extract icons in whatever size you want fr
 
 # Examples
 ```
-JIconExtract.getIconForFile(128,128,"C:\\Windows\\explorer.exe");
+BufferedImage image = JIconExtract.getIconForFile(128,128,"C:\\Windows\\explorer.exe");
 ```
 
 # Rquirements
@@ -18,4 +18,4 @@ jna-platform-5.5.0.jar (https://github.com/java-native-access/jna)
 
 
 # License
-You are free to use it
+You are free to use it in your project.
