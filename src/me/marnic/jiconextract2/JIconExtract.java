@@ -6,6 +6,8 @@ import com.sun.jna.WString;
 import com.sun.jna.platform.win32.COM.COMUtils;
 import com.sun.jna.platform.win32.*;
 import com.sun.jna.ptr.PointerByReference;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -131,4 +133,57 @@ public class JIconExtract {
 
         return null;
     }
+
+    public static BufferedImage getIconForFile(File file) {
+        return getBufferedImage(file);
+    }
+
+    public static BufferedImage getIconForFile(Path filePath) {
+        return getBufferedImage(filePath.toFile());
+    }
+
+    public static BufferedImage getIconForFile(String filePath) {
+        File                           file = new File(filePath);
+        return getBufferedImage(file);
+    }
+
+    public static Image getIconImageForFile(String filePath) {
+        File                           file = new File(filePath);
+        return getImage(file);
+    }
+
+    public static Image getIconImageForFile(File file) {
+        return getImage(file);
+    }
+
+    public static Image getIconImageForFile(Path filePath) {
+        return getImage(filePath.toFile());
+    }
+
+    private static Image getImage(File file) {
+        final javax.swing.JFileChooser fc   = new javax.swing.JFileChooser();
+        javax.swing.Icon               icon = fc.getUI().getFileView(fc).getIcon(file);
+        int width = icon.getIconWidth();
+        int height = icon.getIconHeight();
+        BufferedImage bufferedImage = new BufferedImage(
+                width,
+                height,
+                BufferedImage.TYPE_INT_ARGB
+        );
+        icon.paintIcon(null, bufferedImage.getGraphics(), 0, 0);
+        return SwingFXUtils.toFXImage(bufferedImage, null);
+    }
+
+    private static BufferedImage getBufferedImage(File file) {
+        final javax.swing.JFileChooser fc   = new javax.swing.JFileChooser();
+        javax.swing.Icon               icon = fc.getUI().getFileView(fc).getIcon(file);
+        int width = icon.getIconWidth();
+        int height = icon.getIconHeight();
+        return new BufferedImage(
+                width,
+                height,
+                BufferedImage.TYPE_INT_ARGB
+        );
+    }
+
 }
